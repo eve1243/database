@@ -1,0 +1,27 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "Im Rahmen der Lehrveranstaltung wurde eine relationale Datenbankanwendung für eine fiktive Busliniengesellschaft im Fernverkehr entwickelt. Ziel des Projekts ist es, durch die Kombination von Datenbankmodellierung, SQL-Implementierung und dynamischer Webentwicklung die Grundprinzipien der Datenbankprogrammierung praktisch zu erlernen.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eve1243/database.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eve1243/database/issues"
+  },
+  "homepage": "https://github.com/eve1243/database#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "mysql2": "^3.14.1"
+  }
+}
