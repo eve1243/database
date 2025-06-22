@@ -1,0 +1,44 @@
+/* public/style.css */
+
+/* Import der Inter-Schriftart von Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Allgemeine Basisstile */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Tailwind CSS Klassen im HTML übernehmen die meisten Stile */
+}
+
+/* Du könntest hier spezifische Overrides oder eigene Komponentenstile definieren */
+/* Beispiel: Wenn du eine benutzerdefinierte Liste von Fahrten stilisieren möchtest */
+#fahrten-liste li {
+    background-color: #f0f9ff; /* Ein helles Blau für Listenelemente */
+    border: 1px solid #bfdbfe; /* Passender Rand */
+    border-radius: 0.75rem; /* Abgerundete Ecken */
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+#fahrten-liste li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#fahrten-liste li strong {
+    color: #1e40af; /* Dunkelblau für wichtige Texte */
+}
+
+/* Beispiel für responsive Anpassungen, falls Tailwind nicht ausreicht */
+@media (max-width: 640px) {
+    .max-w-md {
+        width: 100%; /* Auf kleinen Bildschirmen volle Breite nutzen */
+        padding: 1rem;
+    }
+}
