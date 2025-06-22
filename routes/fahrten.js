@@ -2,7 +2,6 @@
 
 const express = require('express');
 const router = express.Router();
-// const DbQueries = require('../db/queries'); // Wenn du die Datenbankabfragen in db/queries.js auslagerst
 
 // Route für die Fahrten-Suche
 // Diese Route empfängt GET-Anfragen an /api/fahrten-suche mit Query-Parametern
@@ -19,10 +18,11 @@ router.get('/api/fahrten-suche', (req, res) => {
     }
 
     // SQL-Abfrage zum Suchen von Fahrten in der Datenbank
-    // Verwende Platzhalter (?) um SQL-Injections zu vermeiden.
+    // Korrigiert: Der Tabellenname 'Fahrten' wurde zu 'Fahrt' geändert,
+    // um dem Datenbankschema zu entsprechen.
     const sql = `
         SELECT *
-        FROM Fahrten
+        FROM Fahrt
         WHERE Abfahrtsort = ?
           AND Zielort = ?
           AND Datum = ?`;
