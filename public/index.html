@@ -3,74 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busgesellschaft - Fahrten finden</title>
-    <!-- Tailwind CSS CDN für schnelles Styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Optionale Tailwind-Konfiguration für die Schriftart "Inter" und abgerundete Ecken
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    borderRadius: {
-                        'xl': '1.0rem', // Etwas größere abgerundete Ecken
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Dein eigenes CSS für zusätzliche oder überschreibende Stile -->
+    <title>Busgesellschaft</title>
     <link rel="stylesheet" href="/style.css">
 </head>
-<body class="font-sans bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+<body>
+    <div class="container">
+        <header>
+            <h1>Busgesellschaft</h1>
+            <nav id="main-nav">
+                <button id="nav-search-btn" class="nav-button active">Fahrten Suchen</button>
+                <button id="nav-login-btn" class="nav-button">Anmelden</button>
+                <button id="nav-booking-btn" class="nav-button hidden">Fahrt Buchen</button>
+                <button id="nav-admin-btn" class="nav-button hidden">Verwaltung</button>
+                <button id="nav-logout-btn" class="nav-button hidden">Abmelden</button>
+            </nav>
+        </header>
 
-    <!-- Hauptcontainer für die Anwendung -->
-    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 w-full max-w-md">
-        <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">Busgesellschaft</h1>
+        <main>
+            <!-- Login/Registrierung Sektion (Standardmäßig hidden beim Start) -->
+            <section id="login-section" class="page-section hidden">
+                <h2>Anmelden</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">SVNR (Benutzername):</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Passwort:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-type">Anmelden/Registrieren als:</label>
+                        <select id="user-type" name="userType">
+                            <option value="guest">Gast</option>
+                            <option value="employee">Angestellter</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="button">Anmelden</button>
+                    <p id="login-message" class="message"></p>
+                </form>
+            </section>
 
-        <p class="text-center text-gray-600 mb-8">Finde deine nächste Busfahrt und buche bequem online.</p>
+            <!-- Fahrten Suche Sektion (Standardmäßig aktiv beim Start) -->
+            <section id="search-section" class="page-section active">
+                <h2>Fahrten Suchen</h2>
+                <form id="fahrten-suche-form">
+                    <div class="form-group">
+                        <label for="abfahrtsort">Abfahrtsort:</label>
+                        <input type="text" id="abfahrtsort" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zielort">Zielort:</label>
+                        <input type="text" id="zielort" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="datum">Datum:</label>
+                        <input type="date" id="datum" required>
+                    </div>
+                    <button type="submit" class="button">Fahrten suchen</button>
+                    <p id="fahrten-suche-message" class="message"></p>
+                </form>
+                <div id="fahrten-results">
+                    <!-- Fahrten Ergebnisse werden hier angezeigt -->
+                </div>
+            </section>
 
-        <!-- Formular für die Fahrten-Suche -->
-        <form id="fahrtensuch-form" class="space-y-4">
-            <div>
-                <label for="abfahrtsort" class="block text-gray-700 text-sm font-semibold mb-2">Abfahrtsort:</label>
-                <input type="text" id="abfahrtsort" name="abfahrtsort" placeholder="Gib deinen Abfahrtsort ein"
-                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm" required>
-            </div>
-            <div>
-                <label for="zielort" class="block text-gray-700 text-sm font-semibold mb-2">Zielort:</label>
-                <input type="text" id="zielort" name="zielort" placeholder="Gib deinen Zielort ein"
-                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm" required>
-            </div>
-            <div>
-                <label for="datum" class="block text-gray-700 text-sm font-semibold mb-2">Datum:</label>
-                <input type="date" id="datum" name="datum"
-                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm" required>
-            </div>
-            <button type="submit"
-                    class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200 shadow-md">
-                Fahrten suchen
-            </button>
-        </form>
+            <!-- Buchungs Sektion (nur für Gäste) -->
+            <section id="booking-section" class="page-section hidden">
+                <h2>Fahrt Buchen</h2>
+                <p>Willkommen im Buchungsbereich. Hier können Sie Fahrten buchen.</p>
+                <p class="info-message">Diese Funktionalität wird noch implementiert.</p>
+            </section>
 
-        <!-- Bereich für die Anzeige der Suchergebnisse -->
-        <div id="fahrten-ergebnisse" class="mt-8">
-            <h2 class="text-xl font-bold text-blue-700 mb-4 hidden">Verfügbare Fahrten:</h2>
-            <ul id="fahrten-liste" class="space-y-4">
-                <!-- Ergebnisse werden hier dynamisch von JavaScript eingefügt -->
-            </ul>
-            <p id="no-results-message" class="text-center text-gray-500 hidden">Keine Fahrten für die ausgewählte Route gefunden.</p>
-        </div>
-
-        <div class="mt-8 pt-4 border-t border-gray-200 text-center text-sm text-gray-500">
-            <p>&copy; <%= new Date().getFullYear() %> Busgesellschaft. Alle Rechte vorbehalten.</p>
-            <p><a href="#" class="text-blue-500 hover:underline">Impressum</a> | <a href="#" class="text-blue-500 hover:underline">Datenschutz</a></p>
-        </div>
+            <!-- Verwaltungs Sektion (nur für Angestellte) -->
+            <section id="admin-section" class="page-section hidden">
+                <h2>Verwaltungsbereich</h2>
+                <p>Willkommen im Verwaltungsbereich. Hier können Angestellte administrative Aufgaben durchführen.</p>
+                <p class="info-message">Diese Funktionalität wird noch implementiert.</p>
+            </section>
+        </main>
     </div>
 
-    <!-- Dein JavaScript für Interaktivität -->
-    <script src="/script.js" type="module"></script>
+    <script type="module" src="/script.js"></script>
 </body>
 </html>
