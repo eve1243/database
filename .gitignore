@@ -1,2 +1,24 @@
+# Abhängigkeiten
+node_modules/
+.pnpm-store/
+
+# Umgebungsvariablen
 .env
-noce_modules
+.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.log
+
+# Build-Ordner
+dist/
+build/
+
+# IDE- und OS-spezifische Dateien
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
